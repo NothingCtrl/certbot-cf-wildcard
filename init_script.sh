@@ -8,6 +8,12 @@ certbotRequest() {
     else
         certbot certonly --dns-cloudflare --dns-cloudflare-credentials $CLOUDFLARE_CRED -d "$DOMAIN",*."$DOMAIN" --preferred-challenges dns-01 --agree-tos --register-unsafely-without-email --force-renew --dns-cloudflare-propagation-seconds 30
     fi 
+    
+    # remove default cron task create by certbot
+    if [[ -f "/etc/cron.d/certbot" ]]; then 
+        rm /etc/cron.d/certbot
+    fi
+    
     echo "=== END CERTBOT SSL REQUEST SCRIPT ==="
 }
 
