@@ -16,4 +16,5 @@ services:
             # - DRY_RUN=1
         volumes:
             - ./creds:/root/creds
+        network_mode: bridge
         
