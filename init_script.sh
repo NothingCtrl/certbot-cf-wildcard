@@ -3,11 +3,12 @@ CLOUDFLARE_CRED=/root/creds/cloudflare.ini
 
 certbotRequest() {
     echo "=== BEGIN CERTBOT SSL REQUEST SCRIPT ==="
+    CMD="certbot certonly --dns-cloudflare --dns-cloudflare-credentials $CLOUDFLARE_CRED -d $DOMAIN,*.$DOMAIN --preferred-challenges dns-01 --agree-tos --register-unsafely-without-email --force-renew --dns-cloudflare-propagation-seconds 30"
     if [ "$DRY_RUN" != "" ]; then
-        certbot certonly --dry-run --dns-cloudflare --dns-cloudflare-credentials $CLOUDFLARE_CRED -d "$DOMAIN",*."$DOMAIN" --preferred-challenges dns-01 --agree-tos --register-unsafely-without-email --force-renew --dns-cloudflare-propagation-seconds 30
-    else
-        certbot certonly --dns-cloudflare --dns-cloudflare-credentials $CLOUDFLARE_CRED -d "$DOMAIN",*."$DOMAIN" --preferred-challenges dns-01 --agree-tos --register-unsafely-without-email --force-renew --dns-cloudflare-propagation-seconds 30
-    fi 
+        CMD="$CMD --dry-run"
+    fi
+    
+    eval "$CMD"
     
     # remove default cron task create by certbot
     if [[ -f "/etc/cron.d/certbot" ]]; then 

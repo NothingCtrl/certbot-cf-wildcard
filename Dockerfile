@@ -9,5 +9,7 @@ RUN /bin/bash certbot-install_master_install.sh
 RUN apt-get install python3-certbot-nginx python3-certbot-dns-cloudflare -y
 COPY init_script.sh .
 RUN chmod +x /root/init_script.sh
+COPY renew_hooks/ /etc/letsencrypt/renewal-hooks/deploy/
+RUN find /etc/letsencrypt/renewal-hooks/deploy/ -type f -iname "*.sh" -exec chmod +x {} \;
 ENTRYPOINT ["/root/init_script.sh"]
 #ENTRYPOINT ["tail", "-f", "/dev/null"]

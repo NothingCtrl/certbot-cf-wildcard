@@ -1,3 +1,5 @@
 creds/cloudflare.ini
 docker-compose.yml
 local_*.bat
+renew_hooks
+!renew_hooks/example_hook.sh
