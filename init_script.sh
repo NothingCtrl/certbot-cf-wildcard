@@ -6,7 +6,7 @@ certbotRequest() {
     CMD="certbot certonly --dns-cloudflare --dns-cloudflare-credentials $CLOUDFLARE_CRED -d $DOMAIN,*.$DOMAIN --preferred-challenges dns-01 --agree-tos --register-unsafely-without-email --force-renew --dns-cloudflare-propagation-seconds 30"
    
     if [ "$ZIMBRA" != "" ]; then
-        CMD="$CMD --preferred-chain \"ISRG Root X1\""
+        CMD="$CMD --preferred-chain \"ISRG Root X1\" --key-type rsa"
     fi
     
     if [ "$DRY_RUN" != "" ]; then
