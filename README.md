@@ -21,4 +21,4 @@ Using `certbot` to request Let's Encrypt wildcard certificate for your domain, t
             ```
 * Run `docker-compose up -d --build` to start container
 * Access container on bind port (default: `8080`) to download certificate
-* The application will auto run certificate renew for every 75 days
+* The application will auto run certificate renew for every 70 days

@@ -14,7 +14,7 @@ services:
             - DOMAIN=foo.bar
             - WEB_PORT=8080
             # - DRY_RUN=1
-        volumes:
+            # - ZIMBRA=1
             - ./creds:/root/creds
         network_mode: bridge
         
