@@ -13,6 +13,10 @@ certbotRequest() {
         CMD="$CMD --dry-run"
     fi
     
+    echo "-------------------------------------"
+    echo "Command execute: $CMD"
+    echo "-------------------------------------"
+    
     eval "$CMD"
     
     # remove default cron task create by certbot
